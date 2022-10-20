@@ -75,7 +75,7 @@ public class ClientVerificationServiceTest {
                 .isClient(false)
                 .build();
         Passport correctUserPassportStub = Passport.builder()
-                .id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
+                //.id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
                 .lastname(ClientRegistrationConstant.LASTNAME_CORRECT_CHARS_DUMMY.getDummy())
                 .firstname(ClientRegistrationConstant.FIRSTNAME_CORRECT_CHARS_DUMMY.getDummy())
                 .surname(ClientRegistrationConstant.MIDDLE_NAME_CORRECT_CHARS_DUMMY.getDummy())
@@ -86,25 +86,25 @@ public class ClientVerificationServiceTest {
                 .isUsResident(Boolean.valueOf(ClientRegistrationConstant.PASSPORT_IS_US_RESIDENT_TRUE.getDummy()))
                 .build();
         Role correctUserRoleStub = Role.builder()
-                .id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
+                //.id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
                 .roleName(ClientRegistrationConstant.USER_ROLE_NAME_DUMMY.getDummy())
                 .build();
         User correctUserStub = User.builder()
-                .id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
-                .uid(Long.valueOf(ClientRegistrationConstant.USER_UID_CORRECT_DUMMY.getDummy()))
+                //.id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
+                //.uid(Long.valueOf(ClientRegistrationConstant.USER_UID_CORRECT_DUMMY.getDummy()))
                 .role(correctUserRoleStub)
                 .passport(correctUserPassportStub)
                 .imageUrl(ClientRegistrationConstant.IMAGE_URL_DUMMY.getDummy())
                 .build();
         correctUserContactStub = UserContact.builder()
-                .id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
+                //.id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
                 .email(ClientRegistrationConstant.EMAIL_EMPTY_DUMMY.getDummy())
                 .skype(ClientRegistrationConstant.SKYPE_EMPTY_DUMMY.getDummy())
                 .phoneNumber(ClientRegistrationConstant.PHONE_CORRECT_CHARS_DUMMY.getDummy())
                 .user(correctUserStub)
                 .build();
         correctCredentialStub = Credential.builder()
-                .id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
+                //.id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
                 .phoneLogin(ClientRegistrationConstant.PHONE_CORRECT_CHARS_DUMMY.getDummy())
                 .passportLogin(ClientRegistrationConstant.PASSPORT_NUMBER_CORRECT_CHARS_DUMMY.getDummy())
                 .password(ClientRegistrationConstant.PASSWORD_CORRECT_CHARS_V1_DUMMY.getDummy())
@@ -117,7 +117,7 @@ public class ClientVerificationServiceTest {
                 .user(correctUserStub)
                 .build();
         correctUserContactStub = UserContact.builder()
-                .id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
+                //.id(Long.valueOf(ClientRegistrationConstant.LONG_ID_DUMMY.getDummy()))
                 .email(ClientRegistrationConstant.EMAIL_EMPTY_DUMMY.getDummy())
                 .skype(ClientRegistrationConstant.SKYPE_EMPTY_DUMMY.getDummy())
                 .phoneNumber(ClientRegistrationConstant.PHONE_CORRECT_CHARS_DUMMY.getDummy())

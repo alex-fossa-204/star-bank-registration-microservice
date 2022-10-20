@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -18,9 +19,12 @@ import java.util.Date;
 public class Credential implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private UUID id;
+
+    @Column(name = "public_uuid", unique = true)
+    private UUID publicUuid;
 
     @Column(name = "phone_login")
     private String phoneLogin;

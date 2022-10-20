@@ -3,11 +3,9 @@ package dev.alexfossa204.starbank.registration.service.impl.registration;
 import dev.alexfossa204.starbank.registration.service.dto.registration.ClientRegistrationRequestDto;
 import dev.alexfossa204.starbank.registration.service.dto.registration.ClientRegistrationResponseDto;
 import dev.alexfossa204.starbank.registration.repository.model.Credential;
-import dev.alexfossa204.starbank.registration.repository.model.Notification;
 import dev.alexfossa204.starbank.registration.repository.model.User;
 import dev.alexfossa204.starbank.registration.repository.model.UserContact;
 import dev.alexfossa204.starbank.registration.repository.CredentialRepository;
-import dev.alexfossa204.starbank.registration.repository.NotificationRepository;
 import dev.alexfossa204.starbank.registration.repository.UserContactRepository;
 import dev.alexfossa204.starbank.registration.service.ClientRegistrationService;
 import dev.alexfossa204.starbank.registration.service.exception.CredentialAlreadyExistsException;
@@ -25,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 import static dev.alexfossa204.starbank.registration.service.constant.ServiceExceptionConstant.*;
 
@@ -37,8 +36,6 @@ public class ClientRegistrationServiceImpl implements ClientRegistrationService 
 
     private final CredentialRepository credentialRepository;
 
-    private final NotificationRepository notificationRepository;
-
     private final PasswordEncoder passwordEncoder;
 
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ)
@@ -50,6 +47,7 @@ public class ClientRegistrationServiceImpl implements ClientRegistrationService 
         }
         User user = userContactOptional.get().getUser();
         Credential credential = Credential.builder()
+                .publicUuid(UUID.randomUUID())
                 .phoneLogin(clientData.getPhoneNumber())
                 .passportLogin(user.getPassport().getPassportSerialNumber())
                 .password(passwordEncoder.encode(clientData.getNewPassword()))
@@ -62,14 +60,6 @@ public class ClientRegistrationServiceImpl implements ClientRegistrationService 
                 .user(user)
                 .build();
         credentialRepository.save(credential);
-
-        Notification notificationSettings = Notification.builder()
-                .isEmailNotificationEnabled(false)
-                .isPushNotificationEnabled(true)
-                .isSmsNotificationEnabled(true)
-                .user(user)
-                .build();
-        notificationRepository.save(notificationSettings);
 
         return ClientRegistrationResponseDto.builder()
                 .timeStamp(new Date())

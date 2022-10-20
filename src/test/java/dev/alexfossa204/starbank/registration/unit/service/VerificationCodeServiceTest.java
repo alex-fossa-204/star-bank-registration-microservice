@@ -52,7 +52,7 @@ public class VerificationCodeServiceTest {
     void beforeEachTest() {
         Date dateDummy = new Date();
         Passport correctUserPassportStub = Passport.builder()
-                .id(Long.valueOf(LONG_ID_DUMMY.getDummy()))
+                //.id(Long.valueOf(LONG_ID_DUMMY.getDummy()))
                 .lastname(LASTNAME_CORRECT_CHARS_DUMMY.getDummy())
                 .firstname(FIRSTNAME_CORRECT_CHARS_DUMMY.getDummy())
                 .surname(MIDDLE_NAME_CORRECT_CHARS_DUMMY.getDummy())
@@ -63,18 +63,18 @@ public class VerificationCodeServiceTest {
                 .isUsResident(Boolean.valueOf(PASSPORT_IS_US_RESIDENT_TRUE.getDummy()))
                 .build();
         Role correctUserRoleStub = Role.builder()
-                .id(Long.valueOf(LONG_ID_DUMMY.getDummy()))
+                //.id(Long.valueOf(LONG_ID_DUMMY.getDummy()))
                 .roleName(USER_ROLE_NAME_DUMMY.getDummy())
                 .build();
         User correctUserStub = User.builder()
-                .id(Long.valueOf(LONG_ID_DUMMY.getDummy()))
-                .uid(Long.valueOf(USER_UID_CORRECT_DUMMY.getDummy()))
+                //.id(Long.valueOf(LONG_ID_DUMMY.getDummy()))
+                //.uid(Long.valueOf(USER_UID_CORRECT_DUMMY.getDummy()))
                 .role(correctUserRoleStub)
                 .passport(correctUserPassportStub)
                 .imageUrl(IMAGE_URL_DUMMY.getDummy())
                 .build();
         correctUserContactStub = UserContact.builder()
-                .id(Long.valueOf(LONG_ID_DUMMY.getDummy()))
+                //.id(Long.valueOf(LONG_ID_DUMMY.getDummy()))
                 .email(EMAIL_EMPTY_DUMMY.getDummy())
                 .skype(SKYPE_EMPTY_DUMMY.getDummy())
                 .phoneNumber(PHONE_CORRECT_CHARS_DUMMY.getDummy())

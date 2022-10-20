@@ -4,7 +4,6 @@ import dev.alexfossa204.starbank.registration.service.dto.registration.NonClient
 import dev.alexfossa204.starbank.registration.service.dto.registration.NonClientRegistrationResponseDto;
 import dev.alexfossa204.starbank.registration.repository.model.Credential;
 import dev.alexfossa204.starbank.registration.repository.model.Role;
-import dev.alexfossa204.starbank.registration.repository.model.Notification;
 import dev.alexfossa204.starbank.registration.repository.model.Passport;
 import dev.alexfossa204.starbank.registration.repository.model.User;
 import dev.alexfossa204.starbank.registration.repository.model.UserContact;
@@ -28,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -41,8 +41,6 @@ public class NonClientRegistrationServiceImpl implements NonClientRegistrationSe
     private final CredentialRepository credentialRepository;
 
     private final UserContactRepository userContactRepository;
-
-    private final NotificationRepository notificationRepository;
 
     private final PassportRepository passportRepository;
 
@@ -60,6 +58,7 @@ public class NonClientRegistrationServiceImpl implements NonClientRegistrationSe
             throw new UserRoleNotFoundException(String.format(ServiceExceptionConstant.ROLE_NOT_PRESENT_REGISTRATION_DENIED, RegistrationServiceConstant.STANDART_CLIENT_ROLE));
         }
         Passport passport = Passport.builder()
+                .publicUuid(UUID.randomUUID())
                 .firstname(nonClientData.getFirstName())
                 .lastname(nonClientData.getLastName())
                 .surname(nonClientData.getMiddleName())
@@ -68,7 +67,7 @@ public class NonClientRegistrationServiceImpl implements NonClientRegistrationSe
                 .build();
         passportRepository.save(passport);
         User user = User.builder()
-                .uid(LongUidGenerator.generateRandomTransferUid())
+                .publicUuid(UUID.randomUUID())
                 .role(roleOptional.get())
                 .passport(passport)
                 .build();
@@ -92,14 +91,6 @@ public class NonClientRegistrationServiceImpl implements NonClientRegistrationSe
                 .user(user)
                 .build();
         credentialRepository.save(credential);
-
-        Notification notificationSettings = Notification.builder()
-                .isEmailNotificationEnabled(false)
-                .isPushNotificationEnabled(true)
-                .isSmsNotificationEnabled(true)
-                .user(user)
-                .build();
-        notificationRepository.save(notificationSettings);
 
         return NonClientRegistrationResponseDto.builder()
                 .timeStamp(new Date())

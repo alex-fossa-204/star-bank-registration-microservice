@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.UUID;
 
 import javax.persistence.*;
 
@@ -19,9 +20,12 @@ import javax.persistence.*;
 public class Role implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private UUID id;
+
+    @Column(name = "public_uuid", unique = true)
+    private UUID publicUuid;
 
     @Column(name = "user_role_name")
     private String roleName;

@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -17,9 +18,12 @@ import java.util.Collection;
 public class Privilege implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private UUID id;
+
+    @Column(name = "public_uuid", unique = true)
+    private UUID publicUuid;
 
     @Column(name = "privilege")
     private String privilegeName;
