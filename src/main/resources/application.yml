@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/star-bank-database
+    url: jdbc:postgresql://127.0.0.1:5430/star-bank-database
     username: postgres
     password: root
     hikari:
@@ -29,7 +29,7 @@ springdoc:
 kafka:
   service:
     enabler: true
-  bootstrapAddress: localhost:9092
+  bootstrapAddress: 127.0.0.1:9092
 
 verification:
   code:

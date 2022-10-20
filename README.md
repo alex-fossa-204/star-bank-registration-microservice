@@ -1,2 +1,2 @@
-# RegistartionMicroservice v2
+# Star Bank Registration Microservice
 
