@@ -34,4 +34,4 @@ kafka:
 verification:
   code:
     check:
-      url: http://127.0.0.1:8080/star-bank/verification-management/validation/is-expired
+      url: http://127.0.0.1:8003/star-bank/verification-management/validation/is-expired
